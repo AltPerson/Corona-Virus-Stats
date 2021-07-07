@@ -1,4 +1,4 @@
-# reactWebsite
+# coronaVirusStats App
 
 Site which display statistics about CoronaVirus created by React and Material-ui framework
 <br>#URL:https://altperson.github.io/reactWebsite/
