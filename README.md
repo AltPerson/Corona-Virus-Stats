@@ -3,6 +3,7 @@
 CoronaVirus Statistics App is a SPA which shows statistics about Coronavirus<br>
 It allows users to check statistics about Coronavirus<br>
 Searching a needed country and use filters to compare quantity of incidents of Coronavirus<br>
+<br>
 ![image](https://github.com/AltPerson/coronaVirusStats/assets/39427362/5960b316-10a2-4272-8cbd-061d7d7747f0)
 ![CoronavirusStats2](https://github.com/AltPerson/coronaVirusStats/assets/39427362/15bbd25e-15a1-4aff-bc63-ce99b2af95f5)
 
