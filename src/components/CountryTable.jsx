@@ -1,13 +1,13 @@
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableRow from "@material-ui/core/TableRow";
-import TableCell from "@material-ui/core/TableCell";
-import TableHead from "@material-ui/core/TableHead";
-import TableSortLabel from "@material-ui/core/TableSortLabel";
-import TablePagination from "@material-ui/core/TablePagination";
-import Paper from "@material-ui/core/Paper";
-import { tableHeader } from "./data";
-import { useState } from "react";
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableRow from '@material-ui/core/TableRow';
+import TableCell from '@material-ui/core/TableCell';
+import TableHead from '@material-ui/core/TableHead';
+import TableSortLabel from '@material-ui/core/TableSortLabel';
+import TablePagination from '@material-ui/core/TablePagination';
+import Paper from '@material-ui/core/Paper';
+import { tableHeader } from './data';
+import { useState } from 'react';
 
 function CountryTable({
   countries,
@@ -16,8 +16,8 @@ function CountryTable({
   imgClass,
   paperClass,
 }) {
-  const [valueToOrderBy, setValueToOrderBy] = useState("name");
-  const [orderDirection, setOrderDirection] = useState("asc");
+  const [valueToOrderBy, setValueToOrderBy] = useState('name');
+  const [orderDirection, setOrderDirection] = useState('asc');
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const [page, setPage] = useState(0);
 
@@ -31,41 +31,41 @@ function CountryTable({
   }
 
   function changeDirectionHandler(name) {
-    const isAsc = name === valueToOrderBy && orderDirection === "asc";
+    const isAsc = name === valueToOrderBy && orderDirection === 'asc';
     setValueToOrderBy(name);
-    setOrderDirection(isAsc ? "desc" : "asc");
+    setOrderDirection(isAsc ? 'desc' : 'asc');
   }
 
   function sortFunctionHandler(a, b, valueToOrderBy, orderDirection) {
     switch (valueToOrderBy) {
-      case "Country Name":
-        return orderDirection === "asc"
+      case 'Country Name':
+        return orderDirection === 'asc'
           ? a.country < b.country
             ? -1
             : 1
           : a.country < b.country
           ? 1
           : -1;
-      case "Total Cases":
-        return orderDirection === "asc" ? a.cases - b.cases : b.cases - a.cases;
-      case "Today Cases":
-        return orderDirection === "asc"
+      case 'Total Cases':
+        return orderDirection === 'asc' ? a.cases - b.cases : b.cases - a.cases;
+      case 'Today Cases':
+        return orderDirection === 'asc'
           ? a.todayCases - b.todayCases
           : b.todayCases - a.todayCases;
-      case "Total Deaths":
-        return orderDirection === "asc"
+      case 'Total Deaths':
+        return orderDirection === 'asc'
           ? a.deaths - b.deaths
           : b.deaths - a.deaths;
-      case "Today Deaths":
-        return orderDirection === "asc"
+      case 'Today Deaths':
+        return orderDirection === 'asc'
           ? a.todayDeaths - b.todayDeaths
           : b.todayDeaths - a.todayDeaths;
-      case "Total Recovered":
-        return orderDirection === "asc"
+      case 'Total Recovered':
+        return orderDirection === 'asc'
           ? a.recovered - b.recovered
           : b.recovered - a.recovered;
-      case "Today Recovered":
-        return orderDirection === "asc"
+      case 'Today Recovered':
+        return orderDirection === 'asc'
           ? a.todayRecovered - b.todayRecovered
           : b.todayRecovered - a.todayRecovered;
       default:
@@ -88,7 +88,7 @@ function CountryTable({
               <TableCell key={index}>
                 <TableSortLabel
                   active={valueToOrderBy === item}
-                  direction={valueToOrderBy === item ? orderDirection : "asc"}
+                  direction={valueToOrderBy === item ? orderDirection : 'asc'}
                   onClick={() => changeDirectionHandler(item)}
                 >
                   {item}
@@ -100,11 +100,11 @@ function CountryTable({
         <TableBody>
           {countries
             .filter((item) =>
-              searchCountry ? item.country === searchCountry : item
+              searchCountry ? item.country.includes(searchCountry) : item,
             )
             .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
             .sort((a, b) =>
-              sortFunctionHandler(a, b, valueToOrderBy, orderDirection)
+              sortFunctionHandler(a, b, valueToOrderBy, orderDirection),
             )
             .map((country) => (
               <TableRow key={country.countryInfo.id}>
@@ -137,7 +137,7 @@ function CountryTable({
           onChangeRowsPerPage={changeRowsPerPageHandler}
         />
       ) : (
-        ""
+        ''
       )}
     </Paper>
   );
